@@ -1,0 +1,20 @@
+.btn {
+      min-width: 168px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      text-align: center;
+      color: #fff;
+      border-radius: 8px;
+      padding: 12px 30px;
+      cursor: pointer;
+}
+
+.btn-primary {
+      background-color: var(--color-orange);
+}
+.btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--color-orange);
+      color: var(--color-orange);
+}

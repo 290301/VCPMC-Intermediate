@@ -1,0 +1,91 @@
+.content {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+}
+
+.info {
+      display: flex;
+      width: 1000px;
+      justify-content: space-between;
+      align-items: flex-start;
+}
+.leftContent {
+      text-align: center;
+      & .image {
+            width: 273px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+      }
+      & .fullName {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f5f5ff;
+            margin-top: 20px;
+      }
+}
+.rightContent {
+      width: 530px;
+}
+.form-control {
+      display: flex;
+      gap: 20px;
+}
+.form-item {
+      width: 100%;
+      margin-bottom: 26px;
+}
+.label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      display: inline-block;
+      margin-bottom: 10px;
+}
+.input {
+      width: 100%;
+      font-size: 16px;
+      font-weight: 400;
+      background-color: #2b2b3f;
+      border-radius: 8px;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 12px;
+}
+.input.readOnly {
+      background-color: #3e3e50;
+      color: #878890;
+      cursor: not-allowed;
+}
+.buttons {
+      margin-top: 20px;
+      display: none;
+      justify-content: space-evenly;
+}
+.buttons.show {
+      display: flex;
+}
+
+// Modal
+.titleModal {
+      font-size: 20px;
+      font-weight: 700;
+      color: #f5f5f5;
+      text-align: center;
+}
+.form-control.modal {
+      display: block;
+      margin-top: 20px;
+      & .label,
+      .input {
+            font-size: 14px;
+      }
+
+      & .buttons {
+            font-size: 14px;
+            display: flex;
+      }
+}

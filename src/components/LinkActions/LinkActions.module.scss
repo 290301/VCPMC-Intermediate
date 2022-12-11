@@ -1,0 +1,38 @@
+// Single Action
+.wrapperSingleAction {
+      display: block;
+      width: 100px;
+      padding: 12px 10px;
+      text-align: center;
+      background-color: var(--background-color-linkActions);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 16px 0px 0px 16px;
+      position: relative;
+      right: 0;
+}
+
+// Multi Action
+.wrapperMultiAction {
+      position: relative;
+      right: 0;
+      border-radius: 16px 0px 0px 16px;
+      overflow: hidden;
+}
+.wrapper {
+      display: block;
+      width: 100px;
+      padding: 12px 10px;
+      text-align: center;
+      background-color: var(--background-color-linkActions);
+      border: none;
+      outline: none;
+      cursor: pointer;
+}
+.titleActions {
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+      margin-top: 10px;
+}

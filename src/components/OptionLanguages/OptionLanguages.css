@@ -1,0 +1,14 @@
+.selectLanguages.ant-select .ant-select-selector {
+      background-color: transparent;
+      color: white;
+      height: 40px;
+      padding: 4px 6px;
+      border-radius: 4px !important;
+}
+
+.selectLanguages.ant-select .ant-select-arrow {
+      color: white;
+      top: 0;
+      height: 0;
+      margin-top: 20px;
+}

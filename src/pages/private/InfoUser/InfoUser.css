@@ -1,0 +1,29 @@
+:where(.css-dev-only-do-not-override-1i536d8).ant-picker .ant-picker-input > input {
+      color: white;
+}
+:where(.css-dev-only-do-not-override-1i536d8).ant-picker .ant-picker-suffix {
+      color: var(--color-orange);
+}
+:where(.css-dev-only-do-not-override-1i536d8).ant-picker:where(
+            .css-dev-only-do-not-override-1i536d8
+      ).ant-picker-disabled {
+      background-color: #2b2b3f;
+      border-color: unset;
+      cursor: not-allowed;
+      color: #fff;
+}
+:where(.css-dev-only-do-not-override-1i536d8).ant-picker .ant-picker-input > input-disabled,
+:where(.css-dev-only-do-not-override-1i536d8).ant-picker .ant-picker-input > input[disabled] {
+      color: #fff;
+}
+:where(.css-dev-only-do-not-override-1i536d8).ant-picker:where(
+            .css-dev-only-do-not-override-1i536d8
+      ).ant-picker-disabled
+      .ant-picker-suffix {
+      color: #fff;
+}
+
+/* Modal */
+.ant-modal.infoUser_modal .ant-modal-content {
+      background-color: var(--background-color-modal);
+}
