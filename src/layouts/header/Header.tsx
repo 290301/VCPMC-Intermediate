@@ -58,21 +58,21 @@ export const Header = () => {
                         <div className={cx('optionLanguages')}>
                               <OptionLanguages />
                         </div>
-                        <div className={cx('user')}>
+                        <Link to={routesConfig.infoUser} className={cx('user')}>
                               <div className={cx('img')}>
                                     <img src={user.currentUser.image} />
                               </div>
-                              <Link to={routesConfig.infoUser} className={cx('info')}>
+                              <div className={cx('info')}>
                                     <p className={cx('name')}>
                                           {user.currentUser.firstName + ' ' + user.currentUser.lastName}
                                     </p>
                                     <p className={cx('role')}>{roleName?.roleName}</p>
-                              </Link>
-                        </div>
+                              </div>
+                        </Link>
                   </div>
 
                   {/* Translate Page header */}
-                  <div className={cx('secondRow', 'heading')}>
+                  <div className={cx('secondRow', 'heading', currentPages.length > 1 ? 'show' : 'hide')}>
                         {currentPages.map((page, index) => {
                               return (
                                     <Link className={cx('link', pathName === page && 'active')} key={index} to={page}>

@@ -2,6 +2,7 @@ import './OptionLanguages.css';
 import { Select } from 'antd';
 import { LogoVietNam } from '../../assets/svg/LogoVietNam';
 import { LogoApp } from '../../assets/svg/LogoApp';
+import CustomizeSelect from '../CustomizeSelect/CustomizeSelect';
 
 type NoName = {
       style?: any;
@@ -10,7 +11,7 @@ const OptionLanguages = ({ style }: NoName) => {
       const options = [
             {
                   label: (
-                        <p style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
+                        <span style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
                               <span> Tiếng việt </span>
                               <LogoVietNam
                                     style={{
@@ -21,7 +22,7 @@ const OptionLanguages = ({ style }: NoName) => {
                                           marginLeft: '12px',
                                     }}
                               />
-                        </p>
+                        </span>
                   ),
                   value: 'vi',
             },
@@ -47,16 +48,15 @@ const OptionLanguages = ({ style }: NoName) => {
             console.log(`selected ${value}`);
       };
       return (
-            <Select
-                  className="selectLanguages"
+            <CustomizeSelect
                   defaultValue="vi"
                   options={options}
+                  borderWhite={true}
                   style={{
                         width: 150,
                         backgroundColor: 'transparent',
-                        ...style,
+                        borderColor: 'white',
                   }}
-                  onChange={handleChange}
             />
       );
 };

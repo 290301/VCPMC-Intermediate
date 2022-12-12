@@ -1,7 +1,7 @@
 // Single Action
 .wrapperSingleAction {
       display: block;
-      width: 100px;
+      width: 90px;
       padding: 12px 10px;
       text-align: center;
       background-color: var(--background-color-linkActions);
@@ -9,14 +9,10 @@
       outline: none;
       cursor: pointer;
       border-radius: 16px 0px 0px 16px;
-      position: relative;
-      right: 0;
 }
 
 // Multi Action
 .wrapperMultiAction {
-      position: relative;
-      right: 0;
       border-radius: 16px 0px 0px 16px;
       overflow: hidden;
 }

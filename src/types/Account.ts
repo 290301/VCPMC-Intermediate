@@ -9,4 +9,5 @@ export type UserType = {
       dateOfBirth: number;
       email: string;
       image: string;
+      
 };

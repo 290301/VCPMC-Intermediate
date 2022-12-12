@@ -13,25 +13,26 @@ import { LogoSupport } from '../../assets/svg/LogoSupport';
 import { LogoThreeDotVertical } from '../../assets/svg/LogoThreeDotVertical';
 import CustomizeButton from '../../components/CustomizeButton/CustomizeButton';
 import { routesConfig } from '../../routes/routeConfig';
+import { translate } from '../../translate';
 import style from './Sidebar.module.scss';
 const cx = classNames.bind(style);
 
 export const Sidebar = () => {
       const navbarList = [
             {
-                  title: 'Kho bản ghi',
-                  logo: <LogoRecordStore className={cx('fill')} />,
+                  title: translate.recordStore,
                   to: routesConfig.recordStore,
+                  logo: <LogoRecordStore className={cx('fill')} />,
             },
             {
-                  title: 'Playlist',
-                  logo: <LogoPlayList className={cx('fill')} />,
+                  title: translate.playList,
                   to: routesConfig.playList,
+                  logo: <LogoPlayList className={cx('fill')} />,
             },
             {
-                  title: 'Lập lịch phát',
-                  logo: <LogoCalendar className={cx('fill')} />,
+                  title: translate.playScheduling,
                   to: routesConfig.playScheduling,
+                  logo: <LogoCalendar className={cx('fill')} />,
             },
             {
                   title: 'Quản lý',
@@ -54,57 +55,49 @@ export const Sidebar = () => {
                   ],
             },
             {
-                  title: 'Doanh thu',
-                  logo: <LogoRevenue className={cx('stroke')} />,
+                  title: translate.revenue,
                   to: routesConfig.revenue,
+                  logo: <LogoRevenue className={cx('stroke')} />,
                   logoRight: <LogoThreeDotVertical />,
                   subMenu: [
                         {
-                              title: 'Báo cáo doanh thu',
-                              to: routesConfig.revenue,
-                              navigateTo: routesConfig.revenue,
+                              title: translate.revenueReport,
+                              navigateTo: routesConfig.revenueReport,
                         },
                         {
-                              title: 'Lịch sử đối soát',
-                              to: routesConfig.revenue,
-                              navigateTo: routesConfig.revenue,
+                              title: translate.history,
+                              navigateTo: routesConfig.history,
                         },
                         {
-                              title: 'Phân phối doanh thu',
-                              to: routesConfig.revenue,
-                              navigateTo: routesConfig.revenue,
+                              title: translate.revenueDistribution,
+                              navigateTo: routesConfig.revenueDistribution,
                         },
                   ],
             },
             {
-                  title: 'Cài đặt',
-                  logo: <LogoSettings className={cx('stroke')} />,
+                  title: translate.settings,
                   to: routesConfig.settings,
+                  logo: <LogoSettings className={cx('stroke')} />,
                   logoRight: <LogoThreeDotVertical />,
                   subMenu: [
                         {
                               title: 'Phân quyền người dùng',
-                              to: routesConfig.settings,
                               navigateTo: routesConfig.settings,
                         },
                         {
                               title: 'Cấu hình',
-                              to: routesConfig.settings,
                               navigateTo: routesConfig.settings,
                         },
                         {
                               title: 'Quản lý hợp đồng',
-                              to: routesConfig.settings,
                               navigateTo: routesConfig.settings,
                         },
                         {
                               title: 'Thông tin tác phẩm',
-                              to: routesConfig.settings,
                               navigateTo: routesConfig.settings,
                         },
                         {
                               title: 'Chu kỳ đối soát',
-                              to: routesConfig.settings,
                               navigateTo: routesConfig.settings,
                         },
                   ],
@@ -117,17 +110,14 @@ export const Sidebar = () => {
                   subMenu: [
                         {
                               title: 'Hướng dẫn sử dụng',
-                              to: routesConfig.support,
                               navigateTo: routesConfig.support,
                         },
                         {
                               title: 'Tải app',
-                              to: routesConfig.support,
                               navigateTo: routesConfig.support,
                         },
                         {
                               title: 'Feedback',
-                              to: routesConfig.support,
                               navigateTo: routesConfig.support,
                         },
                   ],

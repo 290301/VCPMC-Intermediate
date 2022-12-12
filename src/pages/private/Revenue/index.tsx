@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const Administer = () => {
+const Revenue = () => {
       const navigate = useNavigate();
       const location = useLocation();
       useEffect(() => {
@@ -11,4 +11,4 @@ const Administer = () => {
       return <></>;
 };
 
-export default Administer;
+export default Revenue;

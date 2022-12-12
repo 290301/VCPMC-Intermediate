@@ -7,7 +7,7 @@
 :where(.css-dev-only-do-not-override-1i536d8).ant-picker:where(
             .css-dev-only-do-not-override-1i536d8
       ).ant-picker-disabled {
-      background-color: #2b2b3f;
+      background-color: var(--background-color-input);
       border-color: unset;
       cursor: not-allowed;
       color: #fff;

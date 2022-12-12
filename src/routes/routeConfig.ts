@@ -23,6 +23,9 @@ export const routesConfig = {
 
       // Doanh thu
       revenue: '/revenue',
+      revenueReport: '/revenue/revenueReport',
+      revenueDistribution: '/revenue/revenueDistribution',
+      history: '/revenue/history',
 
       // Cài đặt
       settings: '/settings',

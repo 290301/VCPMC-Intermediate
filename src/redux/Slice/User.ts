@@ -22,7 +22,6 @@ export const Login = createAsyncThunk(
                         where('password', '==', password),
                   );
                   const querySnapshot = await getDocs(q);
-
                   return querySnapshot.docs.length > 0
                         ? { ...(querySnapshot.docs[0].data() as UserType), id: querySnapshot.docs[0].id }
                         : undefined;

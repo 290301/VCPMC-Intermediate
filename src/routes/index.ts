@@ -1,9 +1,9 @@
+import { translate } from './../translate/index';
 // public page
 import LoginPage from '../pages/public/LoginPage/LoginPage';
 import ForgetPassword from '../pages/public/ForgetPassword/ForgetPassword';
 import ResetPassword from '../pages/public/ResetPassword/ResetPassword';
 
-// private page
 // private page => Quản lý
 import Administer from '../pages/private/Administer';
 import AuthorizedEntities from '../pages/private/Administer/AuthorizedEntities/AuthorizedEntities';
@@ -11,6 +11,7 @@ import ContractManagement from '../pages/private/Administer/Contract/ContractMan
 import DeviceManagement from '../pages/private/Administer/Device/DeviceManagement';
 
 // private page => Thông tin cá nhân người dùng hiện tại
+import { InfoUser } from '../pages/private/InfoUser/InfoUser';
 
 // private page => Playlist
 import Playlist from '../pages/private/Playlist/Playlist';
@@ -21,8 +22,13 @@ import PlayScheduling from '../pages/private/PlayScheduling/PlayScheduling';
 // private page => Kho bản ghi
 import RecordStore from '../pages/private/RecordStore/RecordStore';
 
+// private page => Doanh thu
+import Revenue from '../pages/private/Revenue';
+import RevenueReport from '../pages/private/Revenue/RevenueReport/RevenueReport';
+import History from '../pages/private/Revenue/History/History';
+import RevenueDistribution from '../pages/private/Revenue/RevenueDistribution/RevenueDistribution';
+
 import { routesConfig } from './routeConfig';
-import { InfoUser } from '../pages/private/InfoUser/InfoUser';
 
 export type RouteProps = {
       path: string;
@@ -37,7 +43,7 @@ const privateRoutes: RouteProps[] = [
       {
             path: routesConfig.recordStore,
             component: RecordStore,
-            translate: 'Kho bản ghi',
+            translate: translate.recordStore,
             pageHeader: routesConfig.recordStore,
       },
 
@@ -45,7 +51,7 @@ const privateRoutes: RouteProps[] = [
       {
             path: routesConfig.playList,
             component: Playlist,
-            translate: 'Playlist',
+            translate: translate.playList,
             pageHeader: routesConfig.playList,
       },
 
@@ -53,7 +59,7 @@ const privateRoutes: RouteProps[] = [
       {
             path: routesConfig.playScheduling,
             component: PlayScheduling,
-            translate: 'Lên lịch phát',
+            translate: translate.playScheduling,
             pageHeader: routesConfig.playScheduling,
       },
 
@@ -61,38 +67,61 @@ const privateRoutes: RouteProps[] = [
       {
             path: routesConfig.administer,
             component: Administer,
-            translate: 'Quản lý',
+            translate: translate.administer,
             pageHeader: routesConfig.administer,
       },
       // Quản lý => Quản lý hợp đồng
       {
             path: routesConfig.contractManagement,
             component: ContractManagement,
-            translate: 'Quản lý hợp đồng',
+            translate: translate.contractManagement,
             pageHeader: routesConfig.contractManagement,
       },
       // Quản lý => Quản lý thiết bị
       {
             path: routesConfig.deviceManagement,
             component: DeviceManagement,
-            translate: 'Quản lý thiết bị',
+            translate: translate.deviceManagement,
             pageHeader: routesConfig.deviceManagement,
       },
       // Quản lý => Đơn vị ủy quyền
       {
             path: routesConfig.authorizedEntities,
             component: AuthorizedEntities,
-            translate: 'Đơn vị ủy quyền',
+            translate: translate.authorizedEntities,
             pageHeader: routesConfig.authorizedEntities,
       },
 
       // Doanh thu
       {
             path: routesConfig.revenue,
-            component: RecordStore,
-            translate: 'Doanh thu',
+            component: Revenue,
+            translate: translate.revenue,
             pageHeader: routesConfig.revenue,
       },
+      // Doanh thu => Báo cáo doanh thu
+      {
+            path: routesConfig.revenueReport,
+            component: RevenueReport,
+            translate: translate.revenueReport,
+            pageHeader: routesConfig.revenueReport,
+      },
+      // Doanh thu => Lịch sử đối soát
+      {
+            path: routesConfig.history,
+            component: History,
+            translate: translate.history,
+            pageHeader: routesConfig.history,
+      },
+      // Doanh thu => Phân phối doanh thu
+      {
+            path: routesConfig.revenueDistribution,
+            component: RevenueDistribution,
+            translate: translate.revenueDistribution,
+            pageHeader: routesConfig.revenueDistribution,
+      },
+
+      // ---------------------------------- chưa translate từ đây
 
       // Cài đặt
       {
@@ -114,7 +143,7 @@ const privateRoutes: RouteProps[] = [
       {
             path: routesConfig.infoUser,
             component: InfoUser,
-            // translate: 'Thông tin cá nhân',
+            translate: translate.infoUser,
             pageHeader: routesConfig.infoUser,
       },
 ];
