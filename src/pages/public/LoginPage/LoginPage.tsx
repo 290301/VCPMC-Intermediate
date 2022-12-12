@@ -28,7 +28,6 @@ const LoginPage = () => {
             if (dataInput.username.length === 0 || dataInput.password.length === 0) {
                   setError({ isError: true, messError: 'Vui lòng điền đầy đủ thông tin' });
             } else {
-                  console.log('Handle Login');
                   LoginApp()
                         .then((response) => {
                               // response: {type, payload,meta}

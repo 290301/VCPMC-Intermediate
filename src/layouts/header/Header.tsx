@@ -12,7 +12,9 @@ const cx = classNames.bind(style);
 
 export const Header = () => {
       const { id } = useParams();
-      const user = useSelector((state: RootState) => state.user.currentUser);
+      const user = useSelector((state: RootState) => state.user);
+      const dataRole = useSelector((state: RootState) => state.role.data);
+      const roleName = dataRole.find((role) => role.roleID === user.currentUser.roleID);
       const location = useLocation();
       const pathName: string = location.pathname.toString();
       const [currentPages, setCurrentPages] = useState<string[] | []>(() => {
@@ -52,20 +54,22 @@ export const Header = () => {
       return (
             <>
                   {/* Change Languages and Info user */}
-                  <Link to={routesConfig.infoUser} className={cx('firstRow')}>
+                  <div className={cx('firstRow')}>
                         <div className={cx('optionLanguages')}>
                               <OptionLanguages />
                         </div>
                         <div className={cx('user')}>
                               <div className={cx('img')}>
-                                    <img src={user.image} />
+                                    <img src={user.currentUser.image} />
                               </div>
-                              <div className={cx('info')}>
-                                    <p className={cx('name')}>Nguyễn Văn A</p>
-                                    <p className={cx('role')}>Admin</p>
-                              </div>
+                              <Link to={routesConfig.infoUser} className={cx('info')}>
+                                    <p className={cx('name')}>
+                                          {user.currentUser.firstName + ' ' + user.currentUser.lastName}
+                                    </p>
+                                    <p className={cx('role')}>{roleName?.roleName}</p>
+                              </Link>
                         </div>
-                  </Link>
+                  </div>
 
                   {/* Translate Page header */}
                   <div className={cx('secondRow', 'heading')}>

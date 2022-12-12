@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { UserType } from '../../types/Account';
 
@@ -9,6 +9,8 @@ type UserSliceProps = {
       isLoggedIn: boolean;
       statusRequest: 'pending' | 'fulfilled' | 'reject' | 'default';
 };
+
+const collectionRef = collection(db, 'accounts');
 
 export const Login = createAsyncThunk(
       'user/login',
@@ -20,7 +22,10 @@ export const Login = createAsyncThunk(
                         where('password', '==', password),
                   );
                   const querySnapshot = await getDocs(q);
-                  return querySnapshot ? (querySnapshot.docs[0].data() as UserType) : undefined;
+
+                  return querySnapshot.docs.length > 0
+                        ? { ...(querySnapshot.docs[0].data() as UserType), id: querySnapshot.docs[0].id }
+                        : undefined;
             } catch (error) {
                   console.log(error);
             }
@@ -30,6 +35,30 @@ export const Login = createAsyncThunk(
 export const Logout = createAsyncThunk('user/logout', async () => {
       return true;
 });
+
+export const UpdateUser = createAsyncThunk('user/update', async (data: UserType) => {
+      try {
+            const AccountRef = doc(collectionRef, data.id);
+            updateDoc(AccountRef, data);
+            return data;
+      } catch (error) {
+            console.log(error);
+      }
+});
+
+export const UpdatePassword = createAsyncThunk(
+      'user/updatePassword',
+      async ({ idUser, newPassword }: { idUser: string; newPassword: string }) => {
+            try {
+                  const AccountRef = doc(collectionRef, idUser);
+                  updateDoc(AccountRef, {
+                        password: newPassword,
+                  });
+            } catch (error) {
+                  console.log(error);
+            }
+      },
+);
 
 export const UserSlice = createSlice({
       name: ' user',
@@ -41,6 +70,7 @@ export const UserSlice = createSlice({
       } as UserSliceProps,
       reducers: {},
       extraReducers: (builder) => {
+            // ----------------------Login
             builder.addCase(Login.pending, (state) => {
                   state.statusRequest = 'pending';
             });
@@ -58,9 +88,22 @@ export const UserSlice = createSlice({
                   state.statusRequest = 'reject';
                   state.isLoggedIn = false;
             });
+            // ----------------------Logout
             builder.addCase(Logout.fulfilled, (state) => {
                   state.isLoggedIn = false;
                   state.currentUser = {} as UserType;
+            });
+            // ----------------------Update user
+            builder.addCase(UpdateUser.fulfilled, (state, action) => {
+                  state.currentUser = action.meta.arg;
+            });
+            // ----------------------Update password
+            builder.addCase(UpdatePassword.pending, (state) => {
+                  state.statusRequest = 'pending';
+            });
+            builder.addCase(UpdatePassword.fulfilled, (state, action) => {
+                  state.currentUser = { ...state.currentUser, password: action.meta.arg.newPassword };
+                  state.statusRequest = 'fulfilled';
             });
       },
 });

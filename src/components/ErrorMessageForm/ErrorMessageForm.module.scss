@@ -1,0 +1,15 @@
+.errorMessage {
+      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      color: var(--color-red);
+      opacity: 0;
+}
+.errorMessage.show {
+      opacity: 1;
+}
+.errorMessage::before {
+      display: inline;
+      content: '⚠ ';
+}

@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { DefaultLayout } from './layouts/defaultLayout/DefaultLayout';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from './routes';
 import { ToastContainer } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import OptionLanguages from './components/OptionLanguages/OptionLanguages';
 import { RootState } from './redux/store';
+import { getDataRoles } from './redux/Slice/Role';
 function App() {
       const dataUser = useSelector((state: RootState) => state.user);
+      const dispatch = useDispatch<any>();
+      useEffect(() => {
+            dispatch(getDataRoles());
+      }, []);
       return (
             <div className="App">
                   <Router>
