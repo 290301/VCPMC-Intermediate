@@ -1,0 +1,76 @@
+:root {
+      --height-card: 260px;
+}
+.wrapperCard {
+      border-radius: 8px;
+      overflow: hidden;
+      width: 292px;
+      height: var(--height-card);
+}
+.image {
+      width: 100%;
+      height: calc(var(--height-card) / 2);
+
+      & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+      }
+}
+.info {
+      background-color: #313149;
+      padding: 4px 20px 16px 20px;
+}
+.nameRecord {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+}
+.block {
+      margin: 2px 0px 10px 0px;
+      & .title {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-text-stroke);
+      }
+      & .content {
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--color-text-stroke);
+            opacity: 0.8;
+      }
+}
+
+.infoDetails {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1px;
+}
+.item {
+      padding: 4px 10px;
+      text-align: center;
+      border: 1px solid var(--color-text-stroke-2);
+      border-radius: 6px;
+      margin-right: 10px;
+      & .title {
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--color-text-stroke-2);
+      }
+      & .content {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--color-text-stroke);
+            margin-top: 4px;
+      }
+}
+
+.logoEdit {
+      flex: 1;
+      position: relative;
+      & svg {
+            position: absolute;
+            right: 0;
+            bottom: 2px;
+      }
+}

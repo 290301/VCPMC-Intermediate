@@ -1,17 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 :root {
-      --width-sidebar: 150px;
-      --width-table-content: 1200px;
+      --width-sidebar: 130px;
+      --width-table-content: 1240px;
       --background-sidebar: #020220;
       --background-sidebar-submenu: #30303f;
       --text-color-sidebar: #c8c8db;
       --background-color-primary: #1e1e2e;
       --background-color-modal: #3e3e5b;
       --background-color-input: #2b2b3f;
+      --background-color-table: #2a2a3b;
       --background-color-linkActions: #2f2f41;
       --color-red: #ff4747;
       --color-orange: #ff7506;
+      --color-orange-header-table: #ffac69;
       --color-blue: #347aff;
+      --color-gray: #878890;
+      --color-text-stroke: #f5f5ff;
+      --color-text-stroke-2: #727288;
 }
 * {
       margin: 0;

@@ -1,7 +1,7 @@
 .content {
       display: flex;
       justify-content: space-between;
-      margin-top: 30px;
+      margin-top: 10px;
 }
 .search {
       width: 520px;
@@ -9,30 +9,50 @@
       border: none;
       border-radius: 8px;
       background-color: var(--background-color-input);
-      padding: 12px 24px;
+      padding: 12px 8px;
       color: #fff;
-      font-size: 14px;
+      font-size: 12px;
       margin-top: 4px;
 }
 .listSelect {
       display: flex;
       justify-content: flex-start;
+      margin-bottom: 10px;
       gap: 30px;
 }
 .listSelect.sidebarClose {
       gap: 60px;
 }
 .title {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
       color: #fff;
       margin-right: 10px;
 }
 
+.listCardRecord {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 0px;
+      flex-wrap: wrap;
+}
 .view {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: 20px;
+}
+.logoViewTable {
+      cursor: pointer;
+      &.active svg path {
+            stroke: var(--color-orange);
+      }
+}
+.logoViewCard {
+      cursor: pointer;
+      &.active svg path {
+            stroke: var(--color-orange);
+      }
 }

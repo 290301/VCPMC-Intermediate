@@ -28,7 +28,9 @@
       .ant-select-selection-item {
       color: white;
 }
-
+.ant-select-selection-item{
+      font-size: 12px;
+}
 /* Popup */
 .selectPopup {
       background-color: #3e3e5b;

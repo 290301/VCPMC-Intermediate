@@ -13,7 +13,7 @@ import dayjs from 'dayjs';
 import CustomizeButton from '../../../components/CustomizeButton/CustomizeButton';
 import { useEffect, useState } from 'react';
 import { ButtonType, CustomizeActionLink, LinkType } from '../../../components/LinkActions/LinkActions';
-import { LogoEdit } from '../../../assets/svg/LogoEdit';
+import { LogoEditCircle } from '../../../assets/svg/LogoEdit';
 import { LogoLogout } from '../../../assets/svg/LogoLogout';
 import { Logout, UpdatePassword, UpdateUser } from '../../../redux/Slice/User';
 import { useNavigate } from 'react-router-dom';
@@ -70,7 +70,7 @@ export const InfoUser = () => {
 
       const multiActions: (ButtonType | LinkType)[] = [
             {
-                  logo: <LogoEdit />,
+                  logo: <LogoEditCircle />,
                   title: 'Sửa thông tin',
                   type: 'button',
                   onClick: () => setIsEdit(true),

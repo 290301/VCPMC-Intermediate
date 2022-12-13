@@ -11,9 +11,9 @@ export const SidebarSlice = createSlice({
             toggleSidebar: (state, action: PayloadAction<boolean>) => {
                   // default is true => sidebar open
                   if (action.payload) {
-                        setWidthSidebar('1200px');
+                        setWidthSidebar('1240px');
                   } else {
-                        setWidthSidebar('1300px');
+                        setWidthSidebar('1340px');
                   }
                   state.isOpen = action.payload;
             },

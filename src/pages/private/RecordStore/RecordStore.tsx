@@ -5,9 +5,18 @@ import { HeaderContent } from '../../../components/HeaderContent/HeaderContent';
 import { translate } from '../../../translate';
 import { LogoViewTable } from '../../../assets/svg/LogoViewTable';
 import { LogoViewCard } from '../../../assets/svg/LogoViewCard';
-import { CustomizeActionLink, ButtonType } from '../../../components/LinkActions/LinkActions';
-import { LogoEdit } from '../../../assets/svg/LogoEdit';
+import { CustomizeActionLink } from '../../../components/LinkActions/LinkActions';
+import { LogoEditCircle } from '../../../assets/svg/LogoEdit';
 import { isOpenSidebar } from '../../../constant';
+import { CustomizeTable } from '../../../components/CustomizeTable/CustomizeTable';
+import { recordStoreAPI } from '../../../api/recordStore';
+import dayjs from 'dayjs';
+import { RecordType } from '../../../types/RecordStore';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { routesConfig } from '../../../routes/routeConfig';
+import { CardRecord } from '../../../components/CardRecord/CardRecord';
+import { sassNull } from 'sass';
 const cx = classNames.bind(style);
 
 const RecordStore = () => {
@@ -46,6 +55,110 @@ const RecordStore = () => {
                   ],
             },
       ];
+      const columns = [
+            {
+                  title: 'STT',
+                  dataIndex: 'STT',
+                  render: (id: any, record: any, index: number) => {
+                        ++index;
+                        return index;
+                  },
+            },
+            {
+                  title: 'Tên bài hát',
+                  dataIndex: 'name',
+            },
+            {
+                  title: 'Mã ISRD',
+                  dataIndex: 'id_ISRD',
+            },
+            {
+                  title: 'Thời lượng',
+                  dataIndex: 'duration',
+            },
+            {
+                  title: 'Ca sĩ',
+                  dataIndex: 'singer',
+            },
+            {
+                  title: 'Tác giả',
+                  dataIndex: 'author',
+            },
+            {
+                  title: 'Thể loại',
+                  dataIndex: 'type',
+            },
+            {
+                  title: 'Định dạng',
+                  dataIndex: 'format',
+            },
+            {
+                  title: 'Thời hạn sử dụng',
+                  dataIndex: 'timeValid',
+                  render: (time: number) => {
+                        return dayjs(time).format('DD/MM/YYYY');
+                  },
+            },
+            {
+                  title: '',
+                  dataIndex: 'updateAction',
+                  render: (data: string) => {
+                        return (
+                              <>
+                                    <Link
+                                          className="text-underline"
+                                          to={`${routesConfig.administer.replace('/:id', '')}/${data.replace(
+                                                'Cập nhật',
+                                                '',
+                                          )}`}
+                                    >
+                                          Cập nhật
+                                    </Link>
+                              </>
+                        );
+                  },
+            },
+            {
+                  title: '',
+                  dataIndex: 'listenAction',
+                  render: (data: string) => {
+                        return (
+                              <>
+                                    <Link
+                                          className="text-underline"
+                                          to={`${routesConfig.administer.replace('/:id', '')}/${data.replace(
+                                                'Chi tiết',
+                                                '',
+                                          )}`}
+                                    >
+                                          Chi tiết
+                                    </Link>
+                              </>
+                        );
+                  },
+            },
+      ];
+      const [dataSource, setDataSource] = useState<RecordType[] | []>([]);
+      const dataRef = useRef<RecordType[] | []>([]);
+      const [viewType, setViewType] = useState<'table' | 'card'>('card');
+
+      function renderData(data: RecordType[]) {
+            var arr = data.map((record: RecordType, index) => {
+                  return {
+                        ...record,
+                        key: index.toString(),
+                        updateAction: `Cập nhật${record.id_ISRD}`,
+                        listenAction: `Nghe${record.id_ISRD}`,
+                  };
+            });
+            dataRef.current = arr;
+            setDataSource(arr);
+      }
+
+      useEffect(() => {
+            renderData(recordStoreAPI);
+      }, []);
+
       return (
             <div>
                   <HeaderContent title={translate.recordStore} />
@@ -63,20 +176,41 @@ const RecordStore = () => {
                                           );
                                     })}
                                     <div className={cx('view')}>
-                                          <LogoViewTable />
-                                          <LogoViewCard />
+                                          <div
+                                                className={cx('logoViewTable', viewType === 'table' && 'active')}
+                                                onClick={() => setViewType('table')}
+                                          >
+                                                <LogoViewTable />
+                                          </div>
+                                          <div
+                                                className={cx('logoViewCard', viewType === 'card' && 'active')}
+                                                onClick={() => setViewType('card')}
+                                          >
+                                                <LogoViewCard />
+                                          </div>
                                     </div>
                               </div>
+                              {viewType === 'table' ? (
+                                    <CustomizeTable columns={columns} dataSource={dataSource} pageSize={7} />
+                              ) : (
+                                    <div className={cx('listCardRecord')}>
+                                          {dataSource.map((record) => {
+                                                return <CardRecord record={record} key={record.id_ISRD} />;
+                                          })}
+                                    </div>
+                              )}
                         </div>
-                        <CustomizeActionLink
-                              type="single"
-                              actions={{
-                                    logo: <LogoEdit />,
-                                    title: 'Quản lý phê duyệt',
-                                    type: 'button',
-                                    onClick: () => alert('123'),
-                              }}
-                        />
+                        <div>
+                              <CustomizeActionLink
+                                    type="single"
+                                    actions={{
+                                          logo: <LogoEditCircle />,
+                                          title: 'Quản lý phê duyệt',
+                                          type: 'button',
+                                          onClick: () => alert('123'),
+                                    }}
+                              />
+                        </div>
                   </div>
             </div>
       );
