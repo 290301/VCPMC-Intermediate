@@ -11,7 +11,7 @@
       background-color: var(--background-color-input);
       padding: 12px 24px;
       color: #fff;
-      font-size: 16px;
+      font-size: 14px;
       margin-top: 4px;
 }
 .listSelect {
@@ -19,8 +19,11 @@
       justify-content: flex-start;
       gap: 30px;
 }
+.listSelect.sidebarClose {
+      gap: 60px;
+}
 .title {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 600;
       color: #fff;
       margin-right: 10px;

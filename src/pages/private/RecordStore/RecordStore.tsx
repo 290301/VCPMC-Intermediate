@@ -7,6 +7,7 @@ import { LogoViewTable } from '../../../assets/svg/LogoViewTable';
 import { LogoViewCard } from '../../../assets/svg/LogoViewCard';
 import { CustomizeActionLink, ButtonType } from '../../../components/LinkActions/LinkActions';
 import { LogoEdit } from '../../../assets/svg/LogoEdit';
+import { isOpenSidebar } from '../../../constant';
 const cx = classNames.bind(style);
 
 const RecordStore = () => {
@@ -45,7 +46,6 @@ const RecordStore = () => {
                   ],
             },
       ];
-
       return (
             <div>
                   <HeaderContent title={translate.recordStore} />
@@ -53,7 +53,7 @@ const RecordStore = () => {
 
                   <div className={cx('content')}>
                         <div style={{ width: 'var(--width-table-content)' }}>
-                              <div className={cx('listSelect')}>
+                              <div className={cx('listSelect', !isOpenSidebar() && 'sidebarClose')}>
                                     {listOption.map((option, index) => {
                                           return (
                                                 <div key={index} className={cx('select')}>
@@ -74,7 +74,7 @@ const RecordStore = () => {
                                     logo: <LogoEdit />,
                                     title: 'Quản lý phê duyệt',
                                     type: 'button',
-                                    onClick: () => alert('Click me'),
+                                    onClick: () => alert('123'),
                               }}
                         />
                   </div>

@@ -1,3 +1,4 @@
+import { SidebarSlice } from './Slice/Sidebar';
 import { UserSlice } from './Slice/User';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
@@ -13,6 +14,7 @@ const persistConfig = {
 const rootReducers = combineReducers({
       user: UserSlice.reducer,
       role: RoleSlice.reducer,
+      sidebar: SidebarSlice.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 

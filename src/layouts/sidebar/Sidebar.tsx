@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import { LogoAdminister } from '../../assets/svg/LogoAdminister';
 import { LogoApp } from '../../assets/svg/LogoApp';
@@ -12,6 +13,8 @@ import { LogoSettings } from '../../assets/svg/LogoSettings';
 import { LogoSupport } from '../../assets/svg/LogoSupport';
 import { LogoThreeDotVertical } from '../../assets/svg/LogoThreeDotVertical';
 import CustomizeButton from '../../components/CustomizeButton/CustomizeButton';
+import { toggleSidebar } from '../../redux/Slice/Sidebar';
+import { RootState } from '../../redux/store';
 import { routesConfig } from '../../routes/routeConfig';
 import { translate } from '../../translate';
 import style from './Sidebar.module.scss';
@@ -124,8 +127,9 @@ export const Sidebar = () => {
             },
       ];
       const location = useLocation();
+      const statusSidebar = useSelector((state: RootState) => state.sidebar.isOpen);
+      const dispatch = useDispatch<any>();
       const path = location.pathname.toString();
-      const [closeSidebar, setCloseSidebar] = useState<boolean>(false);
       const handleClickNavLink = (event: React.MouseEvent<HTMLAnchorElement>) => {
             if (
                   event.currentTarget.parentElement?.className.includes('disable') ||
@@ -137,7 +141,7 @@ export const Sidebar = () => {
       };
 
       return (
-            <div className={cx('wrapper_Sidebar', closeSidebar && 'close')}>
+            <div className={cx('wrapper_Sidebar', !statusSidebar && 'hide')}>
                   <LogoApp className={cx('LogoApp')} style={{}} />
                   <div className={cx('navbar_list')}>
                         {navbarList.map((item, index) => {
@@ -190,10 +194,13 @@ export const Sidebar = () => {
                               title="Close "
                               type="button"
                               typeUI="primary"
-                              onClick={() => setCloseSidebar(true)}
+                              onClick={() => dispatch(toggleSidebar(false))}
                         />
                   </div>
-                  <p onClick={() => setCloseSidebar(false)} className={cx('openSidebar', closeSidebar && 'show')}>
+                  <p
+                        onClick={() => dispatch(toggleSidebar(true))}
+                        className={cx('openSidebar', statusSidebar && 'hide')}
+                  >
                         {<LogoArrowRight />}
                   </p>
             </div>
