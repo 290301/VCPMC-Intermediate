@@ -8,6 +8,7 @@ export const translate = {
 
       // Kho bản ghi
       recordStore: 'Kho bản ghi',
+      updateRecord: 'Cập nhật thông tin',
 
       // Playlist
       playList: 'Playlist',

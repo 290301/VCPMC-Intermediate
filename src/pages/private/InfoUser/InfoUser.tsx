@@ -14,14 +14,14 @@ import CustomizeButton from '../../../components/CustomizeButton/CustomizeButton
 import { useEffect, useState } from 'react';
 import { ButtonType, CustomizeActionLink, LinkType } from '../../../components/LinkActions/LinkActions';
 import { LogoEditCircle } from '../../../assets/svg/LogoEdit';
-import { LogoLogout } from '../../../assets/svg/LogoLogout';
+import { LogoLogoutCircle } from '../../../assets/svg/LogoLogout';
 import { Logout, UpdatePassword, UpdateUser } from '../../../redux/Slice/User';
 import { useNavigate } from 'react-router-dom';
 import { routesConfig } from '../../../routes/routeConfig';
 import { toast } from 'react-toastify';
 import ErrorMessage from '../../../components/ErrorMessageForm/ErrorMessageForm';
 
-import { LogoClock } from '../../../assets/svg/LogoClock';
+import { LogoClockCircle } from '../../../assets/svg/LogoClock';
 const cx = classNames.bind(style);
 export const InfoUser = () => {
       const dispatch = useDispatch<any>();
@@ -60,7 +60,9 @@ export const InfoUser = () => {
                   await dispatch(UpdateUser({ ...data, dateOfBirth: datePicker }));
                   toast.success('Cập nhật thành công', { theme: 'dark' });
                   setIsEdit(false);
-            } catch (error) {}
+            } catch (error) {
+                  console.log(error);
+            }
       };
 
       const handleLogout = async () => {
@@ -76,13 +78,13 @@ export const InfoUser = () => {
                   onClick: () => setIsEdit(true),
             },
             {
-                  logo: <LogoClock />,
+                  logo: <LogoClockCircle />,
                   title: 'Đổi mật khẩu',
                   type: 'button',
                   onClick: () => setIsOpenModal(true),
             },
             {
-                  logo: <LogoLogout />,
+                  logo: <LogoLogoutCircle />,
                   title: 'Đăng xuất',
                   type: 'button',
                   onClick: () => {

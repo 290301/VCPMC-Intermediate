@@ -35,6 +35,11 @@
       justify-content: flex-start;
       align-items: center;
 }
+.ant-image-mask-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
 /* * Reset CSS Antd * */
 p {
       margin: 0;

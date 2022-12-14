@@ -8,6 +8,7 @@ export const routesConfig = {
 
       // Kho bản ghi
       recordStore: '/recordStore',
+      updateRecord: '/recordStore/updateRecord/:id',
 
       // Playlist
       playList: '/playList',

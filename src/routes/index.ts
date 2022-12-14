@@ -20,7 +20,8 @@ import Playlist from '../pages/private/Playlist/Playlist';
 import PlayScheduling from '../pages/private/PlayScheduling/PlayScheduling';
 
 // private page => Kho bản ghi
-import RecordStore from '../pages/private/RecordStore/RecordStore';
+import ListRecordStore from '../pages/private/RecordStore/List/ListRecordStore';
+import { UpdateRecord } from '../pages/private/RecordStore/Update/UpdateRecordStore';
 
 // private page => Doanh thu
 import Revenue from '../pages/private/Revenue';
@@ -42,9 +43,16 @@ const privateRoutes: RouteProps[] = [
       // Kho bản ghi
       {
             path: routesConfig.recordStore,
-            component: RecordStore,
+            component: ListRecordStore,
             translate: translate.recordStore,
             pageHeader: routesConfig.recordStore,
+      },
+      // Cập nhật bản ghi
+      {
+            path: routesConfig.updateRecord,
+            component: UpdateRecord,
+            translate: translate.updateRecord,
+            pageHeader: routesConfig.updateRecord.replace('/:id', ''),
       },
 
       // Playlist
@@ -126,7 +134,7 @@ const privateRoutes: RouteProps[] = [
       // Cài đặt
       {
             path: routesConfig.settings,
-            component: RecordStore,
+            component: ListRecordStore,
             translate: 'Cài đặt',
             pageHeader: routesConfig.settings,
       },
@@ -134,7 +142,7 @@ const privateRoutes: RouteProps[] = [
       // Hỗ trợ
       {
             path: routesConfig.support,
-            component: RecordStore,
+            component: ListRecordStore,
             translate: 'Hỗ trợ',
             pageHeader: routesConfig.support,
       },

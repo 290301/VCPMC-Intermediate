@@ -1,37 +1,72 @@
 import './CustomizeTable.css';
 import { Table, Pagination } from 'antd';
 import { useState } from 'react';
-
+import { TableRowSelection } from 'antd/es/table/interface';
 type ColumnProps = {
       title: string;
       dataIndex: string;
       key?: string;
 };
+export type RowSelection = {
+      isShowRowSelection?: boolean;
+      onChangeRowSelect?: (selectedRowKeys: React.Key[], selectedRows: any[]) => void;
+};
 type CustomizeTableProps = {
       columns: ColumnProps[];
       dataSource: any;
       pageSize: number;
+      rowSelection: RowSelection;
 };
 
-export const CustomizeTable = (props: CustomizeTableProps) => {
+export const CustomizeTable = ({ columns, dataSource, pageSize, rowSelection }: CustomizeTableProps) => {
       const [currentPage, setCurrentPage] = useState<number>(1);
       const getData = (current: number, pageSize: number) => {
-            return props.dataSource.slice((current - 1) * pageSize, current * pageSize);
+            return dataSource.slice((current - 1) * pageSize, current * pageSize);
+      };
+
+      const rowSelectionOption: TableRowSelection<any> | undefined = {
+            onChange: rowSelection.onChangeRowSelect,
       };
       return (
             <div className="customize-table-wrapper">
                   <Table
-                        columns={props.columns}
-                        dataSource={getData(currentPage, props.pageSize)}
+                        rowSelection={rowSelection.isShowRowSelection ? rowSelectionOption : undefined}
+                        columns={columns}
+                        dataSource={getData(currentPage, pageSize)}
                         pagination={false}
-                        loading={props.dataSource.length ? false : true}
+                        loading={dataSource.length ? false : true}
                   />
-                  <Pagination
-                        total={props.dataSource?.length}
-                        current={currentPage}
-                        pageSize={props.pageSize}
-                        onChange={setCurrentPage}
-                  />
+                  <div
+                        style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              marginTop: '10px',
+                        }}
+                  >
+                        <div style={{ color: 'var(--color-text-stroke)', fontSize: '14px', opacity: '0.7' }}>
+                              Hiển thị
+                              <span
+                                    style={{
+                                          padding: '6px 18px',
+                                          border: '1px solid var(--color-orange)',
+                                          borderRadius: '4px',
+                                          margin: '0px 10px',
+                                          color: '#fff',
+                                          fontWeight: '600',
+                                    }}
+                              >
+                                    {pageSize}
+                              </span>
+                              hàng trong mỗi trang
+                        </div>
+                        <Pagination
+                              total={dataSource?.length}
+                              current={currentPage}
+                              pageSize={pageSize}
+                              onChange={setCurrentPage}
+                        />
+                  </div>
             </div>
       );
 };

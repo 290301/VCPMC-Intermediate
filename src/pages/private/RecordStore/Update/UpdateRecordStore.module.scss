@@ -1,0 +1,122 @@
+.wrapper {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+}
+.content {
+      margin-top: 10px;
+      flex: 1;
+}
+.block-content {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+}
+.leftContent {
+      width: 500px;
+      & .block:nth-child(2) {
+            margin-top: 10px;
+      }
+}
+
+.title-block {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-orange);
+      text-align: center;
+      margin-bottom: 20px;
+}
+.block {
+      background-color: #2b2b3f;
+      padding: 20px 20px 6px 20px;
+      border-radius: 8px;
+}
+.image {
+      text-align: center;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      & div {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+      }
+      & img {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            object-fit: cover;
+      }
+      & .svg {
+            background-color: var(--color-blue);
+            padding: 8px;
+            width: unset;
+            height: unset;
+            position: absolute;
+            bottom: 0px;
+            left: 57%;
+            z-index: 1;
+      }
+}
+
+.object {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+
+      & .key {
+            flex: 1;
+            font-size: 12px;
+            color: #fff;
+            font-weight: 700;
+      }
+      & .value {
+            font-size: 12px;
+            color: var(--text-color-stroke);
+            font-weight: 400;
+            color: #fff;
+            opacity: 0.8;
+      }
+}
+
+.rightContent {
+      width: 500px;
+}
+.buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+}
+
+// form
+.form-item {
+      width: 100%;
+      margin-bottom: 12px;
+}
+.label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      display: inline-block;
+      margin-bottom: 11px;
+}
+.input {
+      width: 100%;
+      font-size: 12px;
+      font-weight: 400;
+      background-color: #33334d;
+      border-radius: 8px;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 12px 14px;
+}
