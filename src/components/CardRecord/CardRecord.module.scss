@@ -6,20 +6,43 @@
       overflow: hidden;
       width: 292px;
       height: var(--height-card);
+      transition: 0.3s ease;
+
+      &:hover {
+            box-shadow: 0 0 12px 2px var(--color-orange);
+            cursor: pointer;
+      }
 }
 .image {
+      cursor: pointer;
+      position: relative;
       width: 100%;
-      height: calc(var(--height-card) / 2);
+      height: calc(var(--height-card) / 2 - 10px);
 
       & img {
             width: 100%;
             height: 100%;
             object-fit: cover;
       }
+
+      & .logo-play-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+      }
+      &:hover rect {
+            fill: var(--background-color-modal);
+      }
+      &:hover path {
+            fill: #fff;
+      }
 }
 .info {
+      height: calc(var(--height-card) / 2 + 10px);
       background-color: #313149;
-      padding: 4px 20px 16px 20px;
+      padding: 4px 20px 2px 20px;
 }
 .nameRecord {
       font-size: 14px;
@@ -38,6 +61,10 @@
             font-weight: 400;
             color: var(--color-text-stroke);
             opacity: 0.8;
+      }
+
+      & .row {
+            line-height: 16px;
       }
 }
 
@@ -65,12 +92,18 @@
       }
 }
 
-.logoEdit {
+.checkbox-logoEdit {
       flex: 1;
       position: relative;
-      & svg {
+      & svg,
+      label {
             position: absolute;
             right: 0;
             bottom: 2px;
+      }
+
+      & label span span {
+            width: 20px !important;
+            height: 20px !important;
       }
 }

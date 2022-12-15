@@ -19,17 +19,21 @@ import { CardRecord } from '../../../../components/CardRecord/CardRecord';
 import { LogoCheckedCircle } from '../../../../assets/svg/LogoChecked';
 import { LogoXmarkCircle } from '../../../../assets/svg/LogoXmarks';
 import { YoutubeBox } from '../../../../components/YoutubeBox/YoutubeBox';
+import { Checkbox, Modal } from 'antd';
+import { DefaultOptionType } from 'antd/es/select';
+import CustomizeButton from '../../../../components/CustomizeButton/CustomizeButton';
 const cx = classNames.bind(style);
 
 const ListRecordStore = () => {
-      const [dataSource, setDataSource] = useState<RecordType[] | []>([]);
-      const [videoYoutube, setVideoYoutube] = useState<string>('');
-      const [mountModal, setMountModal] = useState<boolean>(false);
-      const [tableRowSelect, setTableRowSelect] = useState<{ isShow: boolean; listSelected: RecordType[] }>({
-            isShow: false,
-            listSelected: [],
-      });
       const dataRef = useRef<RecordType[] | []>([]);
+      const [dataSource, setDataSource] = useState<RecordType[] | []>([]);
+      const [youtubeBox, setYoutubeBox] = useState<{ url: string; mount: boolean }>({ url: '', mount: false });
+      const [modalDenied, setModalDenied] = useState<boolean>(false);
+      const [isApprove, setIsApprove] = useState<{ isShow: boolean; listSelectedKey: any[] }>({
+            isShow: false,
+            listSelectedKey: [],
+      });
+
       const [viewType, setViewType] = useState<boolean>(true);
       const listOption = [
             {
@@ -40,6 +44,9 @@ const ListRecordStore = () => {
                         { value: 'edm', label: 'EDM' },
                         { value: 'ballad', label: 'Ballad' },
                   ],
+                  onChange: (value: string, option: DefaultOptionType | DefaultOptionType[]) => {
+                        console.log(value);
+                  },
             },
             {
                   title: 'Định dạng',
@@ -48,6 +55,9 @@ const ListRecordStore = () => {
                         { value: 'music', label: 'Music' },
                         { value: 'video', label: 'Video' },
                   ],
+                  onChange: (value: string, option: DefaultOptionType | DefaultOptionType[]) => {
+                        console.log(value);
+                  },
             },
             {
                   title: 'Thời hạn sử dụng',
@@ -56,6 +66,9 @@ const ListRecordStore = () => {
                         { value: 'valid', label: 'Còn thời hạn' },
                         { value: 'invalid', label: 'Hết thời hạn' },
                   ],
+                  onChange: (value: string, option: DefaultOptionType | DefaultOptionType[]) => {
+                        console.log(value);
+                  },
             },
             {
                   title: 'Trạng thái',
@@ -64,6 +77,9 @@ const ListRecordStore = () => {
                         { value: 'user', label: 'Duyệt bởi người dùng' },
                         { value: 'automatic', label: 'Duyệt tự động' },
                   ],
+                  onChange: (value: string, option: DefaultOptionType | DefaultOptionType[]) => {
+                        console.log(value);
+                  },
             },
       ];
       const columns = [
@@ -144,8 +160,7 @@ const ListRecordStore = () => {
                         return (
                               <p
                                     onClick={() => {
-                                          setMountModal(true);
-                                          setVideoYoutube(data);
+                                          setYoutubeBox({ mount: true, url: data });
                                     }}
                                     className="text-underline"
                               >
@@ -157,20 +172,19 @@ const ListRecordStore = () => {
       ];
 
       const onChangeRowSelect = (selectedRowKeys: React.Key[], selectedRows: RecordType[]) => {
-            // selectedRowKeys: index of table => start at 0
-            // selectedRows: list record seleted
-            console.log(selectedRowKeys, selectedRows);
+            setIsApprove({ listSelectedKey: [...selectedRowKeys], isShow: true });
       };
       const rowSelection: RowSelection = {
-            isShowRowSelection: tableRowSelect.isShow,
-            onChangeRowSelect: onChangeRowSelect,
+            isShowRowSelection: isApprove.isShow,
+            onChange: onChangeRowSelect,
+            selectedRowKeys: isApprove.listSelectedKey,
       };
 
       function renderData(data: RecordType[]) {
-            var arr = data.map((record: RecordType, index) => {
+            var arr = data.map((record: RecordType) => {
                   return {
                         ...record,
-                        key: index.toString(),
+                        key: record.id_ISRC,
                         updateAction: record,
                         listenAction: record.linkYoutube,
                   };
@@ -178,13 +192,15 @@ const ListRecordStore = () => {
             dataRef.current = arr;
             setDataSource(arr);
       }
+
       useEffect(() => {
             const timeout = setTimeout(() => {
-                  videoYoutube.length === 0 && setMountModal(false);
+                  youtubeBox.url.length === 0 && setYoutubeBox({ url: '', mount: false });
             }, 1000);
 
             return () => clearTimeout(timeout);
-      }, [videoYoutube]);
+      }, [youtubeBox.url]);
+
       useEffect(() => {
             renderData(recordStoreAPI);
       }, []);
@@ -200,7 +216,10 @@ const ListRecordStore = () => {
                                           return (
                                                 <div key={index} className={cx('select')}>
                                                       <span className={cx('title')}>{option.title}</span>
-                                                      <CustomizeSelect options={option.options} />
+                                                      <CustomizeSelect
+                                                            onChange={option.onChange}
+                                                            options={option.options}
+                                                      />
                                                 </div>
                                           );
                                     })}
@@ -230,16 +249,36 @@ const ListRecordStore = () => {
                                           />
                                     </div>
                               ) : (
-                                    <div className={cx('listCardRecord')}>
-                                          {dataSource.map((record) => {
-                                                console.log('Hello');
-                                                return <CardRecord record={record} key={record.id_ISRC} />;
-                                          })}
-                                    </div>
+                                    <Checkbox.Group
+                                          value={isApprove.listSelectedKey}
+                                          onChange={(e) => setIsApprove({ listSelectedKey: [...e], isShow: true })}
+                                    >
+                                          <div className={cx('listCardRecord')}>
+                                                {dataSource.map((record) => {
+                                                      return (
+                                                            <CardRecord
+                                                                  checkbox={
+                                                                        isApprove.isShow && (
+                                                                              <Checkbox value={record.id_ISRC} />
+                                                                        )
+                                                                  }
+                                                                  onClick={() => {
+                                                                        setYoutubeBox({
+                                                                              url: record.linkYoutube,
+                                                                              mount: true,
+                                                                        });
+                                                                  }}
+                                                                  record={record}
+                                                                  key={record.id_ISRC}
+                                                            />
+                                                      );
+                                                })}
+                                          </div>
+                                    </Checkbox.Group>
                               )}
                         </div>
                         <div>
-                              {tableRowSelect.isShow ? (
+                              {isApprove.isShow ? (
                                     <CustomizeActionLink
                                           type="multi"
                                           actions={[
@@ -247,23 +286,25 @@ const ListRecordStore = () => {
                                                       logo: <LogoCheckedCircle />,
                                                       title: 'Phê duyệt',
                                                       type: 'button',
-                                                      onClick: (prev) =>
-                                                            setTableRowSelect({
-                                                                  ...prev,
-                                                                  isShow: false,
-                                                                  listSelected: [],
-                                                            }),
+                                                      onClick: () => {
+                                                            if (isApprove.listSelectedKey.length > 0) {
+                                                                  setIsApprove({ isShow: false, listSelectedKey: [] });
+                                                            } else {
+                                                                  alert('Vui lòng chọn ít nhất 1 bản ghi');
+                                                            }
+                                                      },
                                                 },
                                                 {
                                                       logo: <LogoXmarkCircle />,
                                                       title: 'Từ chối',
                                                       type: 'button',
-                                                      onClick: (prev) =>
-                                                            setTableRowSelect({
-                                                                  ...prev,
-                                                                  isShow: false,
-                                                                  listSelected: [],
-                                                            }),
+                                                      onClick: () => {
+                                                            if (isApprove.listSelectedKey.length > 0) {
+                                                                  setModalDenied(true);
+                                                            } else {
+                                                                  alert('Vui lòng chọn ít nhất 1 bản ghi');
+                                                            }
+                                                      },
                                                 },
                                           ]}
                                     />
@@ -274,22 +315,52 @@ const ListRecordStore = () => {
                                                 logo: <LogoEditCircle />,
                                                 title: 'Quản lý phê duyệt',
                                                 type: 'button',
-                                                onClick: (prev) =>
-                                                      setTableRowSelect({ ...prev, isShow: true, listSelected: [] }),
+                                                onClick: () => setIsApprove({ isShow: true, listSelectedKey: [] }),
                                           }}
                                     />
                               )}
                         </div>
                   </div>
-                  {mountModal ? (
+                  {youtubeBox.mount ? (
                         <YoutubeBox
-                              isShow={videoYoutube.length > 0}
-                              handleHide={() => setVideoYoutube('')}
-                              url={videoYoutube}
+                              isShow={youtubeBox.url.length > 0}
+                              handleHide={() => setYoutubeBox({ url: '', mount: true })}
+                              url={youtubeBox.url}
                         />
-                  ) : (
-                        <></>
-                  )}
+                  ) : null}
+
+                  <Modal
+                        onCancel={() => setModalDenied(false)}
+                        open={modalDenied}
+                        footer={null}
+                        width="600px"
+                        closeIcon={<></>}
+                        centered={true}
+                  >
+                        <h2 className={cx('heading')}>Lý do từ chối phê duyệt</h2>
+                        <textarea
+                              className={cx('text-area')}
+                              rows={8}
+                              placeholder="Cho chúng tôi biết lý do bạn muốn từ chối phê duyệt bản ghi này..."
+                        />
+                        <div className={cx('buttons')}>
+                              <CustomizeButton
+                                    type="button"
+                                    typeUI="outline"
+                                    title="Hủy"
+                                    onClick={() => setModalDenied(false)}
+                              />
+                              <CustomizeButton
+                                    type="button"
+                                    typeUI="primary"
+                                    title="Từ chối"
+                                    onClick={() => {
+                                          setIsApprove({ isShow: false, listSelectedKey: [] });
+                                          setModalDenied(false);
+                                    }}
+                              />
+                        </div>
+                  </Modal>
             </div>
       );
 };

@@ -9,7 +9,8 @@ type ColumnProps = {
 };
 export type RowSelection = {
       isShowRowSelection?: boolean;
-      onChangeRowSelect?: (selectedRowKeys: React.Key[], selectedRows: any[]) => void;
+      onChange?: (selectedRowKeys: React.Key[], selectedRows: any[]) => void;
+      selectedRowKeys: string[];
 };
 type CustomizeTableProps = {
       columns: ColumnProps[];
@@ -25,8 +26,10 @@ export const CustomizeTable = ({ columns, dataSource, pageSize, rowSelection }: 
       };
 
       const rowSelectionOption: TableRowSelection<any> | undefined = {
-            onChange: rowSelection.onChangeRowSelect,
+            onChange: rowSelection.onChange,
+            selectedRowKeys: rowSelection.selectedRowKeys,
       };
+
       return (
             <div className="customize-table-wrapper">
                   <Table

@@ -9,6 +9,8 @@
       --background-color-modal: #3e3e5b;
       --background-color-input: #2b2b3f;
       --background-color-table: #2a2a3b;
+      --background-color-table-row-hover: rgba(0, 0, 0, 0.247);
+      --background-color-table-row-selected: #525283;
       --background-color-linkActions: #2f2f41;
       --color-red: #ff4747;
       --color-orange: #ff7506;
@@ -39,6 +41,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+}
+.ant-modal-content {
+      background-color: var(--background-color-modal) !important;
 }
 /* * Reset CSS Antd * */
 p {

@@ -22,8 +22,3 @@
       .ant-picker-suffix {
       color: #fff;
 }
-
-/* Modal */
-.ant-modal.infoUser_modal .ant-modal-content {
-      background-color: var(--background-color-modal);
-}

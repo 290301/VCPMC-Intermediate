@@ -1,17 +1,25 @@
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 import { LogoEdit } from '../../assets/svg/LogoEdit';
+import { LogoPlayVideoCircle } from '../../assets/svg/LogoPlayVideo';
+import { routesConfig } from '../../routes/routeConfig';
 import { RecordType } from '../../types/RecordStore';
 import style from './CardRecord.module.scss';
 const cx = classNames.bind(style);
 
 type CardRecordProps = {
       record: RecordType;
+      onClick?: () => void;
+      checkbox: React.ReactNode;
 };
-export const CardRecord = ({ record }: CardRecordProps) => {
+export const CardRecord = ({ record, checkbox, onClick }: CardRecordProps) => {
       return (
             <div className={cx('wrapperCard')}>
-                  <div className={cx('image')}>
+                  <div onClick={onClick} className={cx('image')}>
                         <img src={record.img} />
+                        <div className={cx('logo-play-video')}>
+                              <LogoPlayVideoCircle />
+                        </div>
                   </div>
                   <div className={cx('info')}>
                         <h3 className={cx('nameRecord')}>{record.name}</h3>
@@ -44,9 +52,17 @@ export const CardRecord = ({ record }: CardRecordProps) => {
                                           <p className={cx('content')}>{record.duration}</p>
                                     </div>
                               </>
-
-                              <div className={cx('logoEdit')}>
-                                    <LogoEdit />
+                              <div className={cx('checkbox-logoEdit')}>
+                                    {checkbox ? (
+                                          checkbox
+                                    ) : (
+                                          <Link
+                                                state={{ ...record }}
+                                                to={`${routesConfig.updateRecord.replace(':id', record.id_ISRC)}`}
+                                          >
+                                                <LogoEdit />
+                                          </Link>
+                                    )}
                               </div>
                         </div>
                   </div>

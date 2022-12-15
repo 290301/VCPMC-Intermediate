@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import style from './UpdateRecordStore.module.scss';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { HeaderContent } from '../../../../components/HeaderContent/HeaderContent';
 import { RecordType } from '../../../../types/RecordStore';
 import { CustomizeActionLink } from '../../../../components/LinkActions/LinkActions';
@@ -16,6 +16,7 @@ import { renderTextFromTime } from '../../../../constant';
 const cx = classNames.bind(style);
 export const UpdateRecord = () => {
       const location = useLocation();
+      const navigate = useNavigate();
       const data: RecordType = location.state;
 
       // ------------------------------ Schema form User
@@ -178,7 +179,7 @@ export const UpdateRecord = () => {
                                           title="Hủy"
                                           type="button"
                                           typeUI="outline"
-                                          onClick={() => alert('123')}
+                                          onClick={() => navigate(-1)}
                                     />
                                     <CustomizeButton
                                           title="Lưu"
