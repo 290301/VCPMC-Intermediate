@@ -23,16 +23,15 @@ function App() {
                                     <div className="wrapper wrapper-private">
                                           <Routes>
                                                 {privateRoutes.map((route, index) => {
-                                                      const Page = route.component;
-                                                      let Layout = DefaultLayout;
-                                                      if (route.layout) {
-                                                            Layout = route.layout;
-                                                      }
                                                       return (
                                                             <Route
                                                                   key={index}
                                                                   path={route.path}
-                                                                  element={<Layout component={<Page />}></Layout>}
+                                                                  element={
+                                                                        <DefaultLayout
+                                                                              component={<route.component />}
+                                                                        ></DefaultLayout>
+                                                                  }
                                                             />
                                                       );
                                                 })}

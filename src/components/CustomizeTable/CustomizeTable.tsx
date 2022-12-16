@@ -16,7 +16,7 @@ type CustomizeTableProps = {
       columns: ColumnProps[];
       dataSource: any;
       pageSize: number;
-      rowSelection: RowSelection;
+      rowSelection?: RowSelection;
 };
 
 export const CustomizeTable = ({ columns, dataSource, pageSize, rowSelection }: CustomizeTableProps) => {
@@ -26,14 +26,14 @@ export const CustomizeTable = ({ columns, dataSource, pageSize, rowSelection }: 
       };
 
       const rowSelectionOption: TableRowSelection<any> | undefined = {
-            onChange: rowSelection.onChange,
-            selectedRowKeys: rowSelection.selectedRowKeys,
+            onChange: rowSelection?.onChange,
+            selectedRowKeys: rowSelection?.selectedRowKeys,
       };
 
       return (
             <div className="customize-table-wrapper">
                   <Table
-                        rowSelection={rowSelection.isShowRowSelection ? rowSelectionOption : undefined}
+                        rowSelection={rowSelection?.isShowRowSelection ? rowSelectionOption : undefined}
                         columns={columns}
                         dataSource={getData(currentPage, pageSize)}
                         pagination={false}

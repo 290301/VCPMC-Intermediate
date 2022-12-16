@@ -1,21 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-function setWidthSidebar(newWidth: string) {
-      document.documentElement.style.setProperty('--width-table-content', newWidth);
-}
+// function setWidthSidebar(newWidth: string) {
+//       document.documentElement.style.setProperty('--width-table-content', newWidth);
+// }
+type SidebarProps = {
+      type: 'block' | 'fixed';
+      isOpen: boolean;
+};
 export const SidebarSlice = createSlice({
-      name: ' sidebar',
+      name: 'sidebar',
       initialState: {
-            isOpen: true,
-      },
+            type: 'block',
+            isOpen: false,
+      } as SidebarProps,
       reducers: {
-            toggleSidebar: (state, action: PayloadAction<boolean>) => {
-                  // default is true => sidebar open
-                  if (action.payload) {
-                        setWidthSidebar('1240px');
-                  } else {
-                        setWidthSidebar('1340px');
-                  }
-                  state.isOpen = action.payload;
+            toggleSidebar: (state, action: PayloadAction<SidebarProps>) => {
+                  state = { ...action.payload };
             },
       },
 });

@@ -3,6 +3,11 @@
       justify-content: space-between;
       margin-top: 10px;
 }
+.table {
+      & table tr td {
+            padding: 14px 16px !important;
+      }
+}
 .search {
       width: 520px;
       outline: none;
@@ -14,21 +19,8 @@
       font-size: 12px;
       margin-top: 4px;
 }
-.listSelect {
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 10px;
-      gap: 60px;
-}
 
-.title {
-      font-size: 12px;
-      font-weight: 600;
-      color: #fff;
-      margin-right: 10px;
-}
-
-.listCardRecord {
+.listCardPlayList {
       display: flex;
       align-items: center;
       justify-content: space-between;

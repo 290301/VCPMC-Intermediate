@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { LogoEdit } from '../../assets/svg/LogoEdit';
 import { LogoPlayVideoCircle } from '../../assets/svg/LogoPlayVideo';
+import { formatDuration } from '../../constant';
 import { routesConfig } from '../../routes/routeConfig';
 import { RecordType } from '../../types/RecordStore';
 import style from './CardRecord.module.scss';
@@ -49,7 +50,7 @@ export const CardRecord = ({ record, checkbox, onClick }: CardRecordProps) => {
                                     </div>
                                     <div className={cx('item')}>
                                           <p className={cx('title')}>Thời lượng </p>
-                                          <p className={cx('content')}>{record.duration}</p>
+                                          <p className={cx('content')}>{formatDuration(record.duration)}</p>
                                     </div>
                               </>
                               <div className={cx('checkbox-logoEdit')}>

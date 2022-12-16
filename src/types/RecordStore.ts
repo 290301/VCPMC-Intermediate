@@ -3,7 +3,7 @@ export type RecordType = {
       key: string;
       name: string;
       id_ISRC: string;
-      duration: string;
+      duration: number;
       singer: string;
       author: string;
       type: string;

@@ -7,7 +7,7 @@ import { LogoViewTable } from '../../../../assets/svg/LogoViewTable';
 import { LogoViewCard } from '../../../../assets/svg/LogoViewCard';
 import { CustomizeActionLink } from '../../../../components/LinkActions/LinkActions';
 import { LogoEditCircle } from '../../../../assets/svg/LogoEdit';
-import { isOpenSidebar, renderTextFromTime } from '../../../../constant';
+import { formatDuration, renderTextFromTime } from '../../../../constant';
 import { CustomizeTable, RowSelection } from '../../../../components/CustomizeTable/CustomizeTable';
 import { recordStoreAPI } from '../../../../api/recordStore';
 import dayjs from 'dayjs';
@@ -102,8 +102,8 @@ const ListRecordStore = () => {
             {
                   title: 'Thời lượng',
                   dataIndex: 'duration',
-                  render: (time: string) => {
-                        return <p style={{ textAlign: 'right' }}>{time}</p>;
+                  render: (seconds: number) => {
+                        return <p style={{ textAlign: 'right' }}>{formatDuration(seconds)}</p>;
                   },
             },
             {
@@ -210,8 +210,8 @@ const ListRecordStore = () => {
                   <HeaderContent title={translate.recordStore} />
                   <input type="text" className={cx('search')} placeholder="Tên bản ghi, ca sĩ..." />
                   <div className={cx('content')}>
-                        <div style={{ width: 'var(--width-table-content)' }}>
-                              <div className={cx('listSelect', !isOpenSidebar() && 'sidebarClose')}>
+                        <div style={{ width: 'var(--width-content-sidebar-open)' }}>
+                              <div className={cx('listSelect')}>
                                     {listOption.map((option, index) => {
                                           return (
                                                 <div key={index} className={cx('select')}>

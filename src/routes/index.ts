@@ -14,7 +14,7 @@ import DeviceManagement from '../pages/private/Administer/Device/DeviceManagemen
 import { InfoUser } from '../pages/private/InfoUser/InfoUser';
 
 // private page => Playlist
-import Playlist from '../pages/private/Playlist/Playlist';
+import PlayList from '../pages/private/Playlist/List/PlayList';
 
 // private page => Lên lịch phát
 import PlayScheduling from '../pages/private/PlayScheduling/PlayScheduling';
@@ -58,7 +58,7 @@ const privateRoutes: RouteProps[] = [
       // Playlist
       {
             path: routesConfig.playList,
-            component: Playlist,
+            component: PlayList,
             translate: translate.playList,
             pageHeader: routesConfig.playList,
       },

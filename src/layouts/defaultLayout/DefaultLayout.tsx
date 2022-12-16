@@ -12,9 +12,7 @@ type ComponentProps = {
 export const DefaultLayout = ({ component }: ComponentProps) => {
       return (
             <div className={cx('wrapper')}>
-                  <div className={cx('sidebar')}>
-                        <Sidebar />
-                  </div>
+                  <Sidebar />
                   <div className={cx('content')}>
                         <Header />
                         <div className={cx('children')}>{component}</div>
