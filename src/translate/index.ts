@@ -12,6 +12,8 @@ export const translate = {
 
       // Playlist
       playList: 'Playlist',
+      addPlayList: 'Thêm playlist mới',
+      addRecordToPlaylist: 'Thêm bản ghi vào Playlist',
 
       // Lập lịch phát
       playScheduling: 'Lập lịch phát',

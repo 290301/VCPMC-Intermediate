@@ -22,10 +22,13 @@ import { YoutubeBox } from '../../../../components/YoutubeBox/YoutubeBox';
 import { Checkbox, Modal } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
 import CustomizeButton from '../../../../components/CustomizeButton/CustomizeButton';
+import { useDispatch } from 'react-redux';
+import { toggleSidebar } from '../../../../redux/Slice/Sidebar';
 const cx = classNames.bind(style);
 
 const ListRecordStore = () => {
       const dataRef = useRef<RecordType[] | []>([]);
+      const dispatch = useDispatch<any>();
       const [dataSource, setDataSource] = useState<RecordType[] | []>([]);
       const [youtubeBox, setYoutubeBox] = useState<{ url: string; mount: boolean }>({ url: '', mount: false });
       const [modalDenied, setModalDenied] = useState<boolean>(false);
@@ -203,6 +206,7 @@ const ListRecordStore = () => {
 
       useEffect(() => {
             renderData(recordStoreAPI);
+            dispatch(toggleSidebar({ type: 'block', isOpen: false }));
       }, []);
 
       return (

@@ -5,8 +5,13 @@
       background-color: var(--background-color-primary);
 }
 
-.content {
+.content.sb-block {
       width: 100%;
       background-color: var(--background-color-primary);
       padding-left: 30px;
+}
+.content.sb-fixed {
+      width: 100%;
+      background-color: var(--background-color-primary);
+      padding-left: calc(30px + var(--width-sidebar-close));
 }

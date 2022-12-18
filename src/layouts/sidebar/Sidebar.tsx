@@ -24,12 +24,11 @@ const cx = classNames.bind(style);
 export const Sidebar = () => {
       const statusSidebar = useSelector((state: RootState) => state.sidebar);
       const dispatch = useDispatch<any>();
+      const divRef = useRef<HTMLDivElement>(null);
+      divRef.current?.addEventListener('click', (e) => {
+            e && dispatch(toggleSidebar({ type: 'fixed', isOpen: false }));
+      });
 
-      useEffect(() => {
-            document.querySelector('#empty')?.addEventListener('click', (e) => {
-                  e && dispatch(toggleSidebar({ type: 'fixed', isOpen: false }));
-            });
-      }, []);
       const handleOpenModal = () => {
             dispatch(toggleSidebar({ type: 'fixed', isOpen: true }));
       };
@@ -38,7 +37,7 @@ export const Sidebar = () => {
       ) : (
             <div className={cx('modalSidebar', statusSidebar.isOpen ? '' : 'close')}>
                   <SidebarContent handleOpenModal={handleOpenModal} buttonCloseModal={statusSidebar.isOpen} />
-                  <div id="empty" style={{ flex: '1' }}></div>
+                  <div ref={divRef} style={{ flex: '1' }}></div>
             </div>
       );
 };

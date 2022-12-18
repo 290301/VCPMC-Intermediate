@@ -1,6 +1,5 @@
 .ant-table-wrapper {
-      width: var(--width-content-sidebar-open);
-      min-height: 490px;
+      width: 100%;
       overflow: hidden;
 }
 

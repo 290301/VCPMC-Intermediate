@@ -7,19 +7,22 @@ import { CustomizeActionLink } from '../../../../components/LinkActions/LinkActi
 import { formatDuration } from '../../../../constant';
 import { CustomizeTable } from '../../../../components/CustomizeTable/CustomizeTable';
 import dayjs from 'dayjs';
-import { RecordType } from '../../../../types/RecordStore';
 import { useEffect, useRef, useState } from 'react';
 import { LogoAddPlaylist } from '../../../../assets/svg/LogoAddPlaylist';
 import { PlayListType } from '../../../../types/PlayList';
 import { playListAPI } from '../../../../api/playList';
 import { routesConfig } from '../../../../routes/routeConfig';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { CardPlayList } from '../../../../components/CardRecord/CardRecord';
+import { useDispatch } from 'react-redux';
+import { toggleSidebar } from '../../../../redux/Slice/Sidebar';
 const cx = classNames.bind(style);
 
 const PlayList = () => {
+      const dispatch = useDispatch<any>();
       const dataRef = useRef<PlayListType[] | []>([]);
       const [dataSource, setDataSource] = useState<PlayListType[] | []>([]);
-
+      const navigate = useNavigate();
       const [viewType, setViewType] = useState<boolean>(true);
 
       const columns = [
@@ -108,7 +111,7 @@ const PlayList = () => {
                   return {
                         ...item,
                         key: item.key,
-                        detailsAction:  item,
+                        detailsAction: item,
                   };
             });
             dataRef.current = arr;
@@ -117,6 +120,7 @@ const PlayList = () => {
 
       useEffect(() => {
             renderData(playListAPI);
+            dispatch(toggleSidebar({ type: 'block', isOpen: false }));
       }, []);
 
       return (
@@ -143,12 +147,17 @@ const PlayList = () => {
                         <div style={{ width: 'var(--width-content-sidebar-open)' }}>
                               {viewType ? (
                                     <div className={cx('table')}>
-                                          <CustomizeTable columns={columns} dataSource={dataSource} pageSize={10} />
+                                          <CustomizeTable
+                                                columns={columns}
+                                                dataSource={dataSource}
+                                                pageSize={10}
+                                                
+                                          />
                                     </div>
                               ) : (
                                     <div className={cx('listCardPlayList')}>
-                                          {dataSource.map((item) => {
-                                                return <></>;
+                                          {dataSource.map((item, index) => {
+                                                return <CardPlayList playList={item} key={index} />;
                                           })}
                                     </div>
                               )}
@@ -160,7 +169,7 @@ const PlayList = () => {
                                           logo: <LogoAddPlaylist />,
                                           title: 'Thêm Playlist',
                                           type: 'button',
-                                          onClick: () => alert('123'),
+                                          onClick: () => navigate(routesConfig.addPlayList),
                                     }}
                               />
                         </div>

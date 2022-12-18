@@ -1,0 +1,22 @@
+/* ant popup select */
+.AddPlayList:where(.css-dev-only-do-not-override-1i536d8).ant-select:not(
+            :where(.css-dev-only-do-not-override-1i536d8).ant-select-customize-input
+      )
+      .ant-select-selector {
+      background-color: var(--background-color-input) !important;
+      border: 1px solid var(--color-text-stroke-2);
+      padding: 6px 10px;
+}
+.AddPlayList:where(.css-dev-only-do-not-override-1i536d8).ant-select-multiple
+      .ant-select-selection-item-remove
+      > .anticon {
+      color: var(--color-red);
+}
+.AddPlayList:where(.css-dev-only-do-not-override-1i536d8).ant-select-multiple .ant-select-selection-item {
+      background-color: transparent;
+      border: 1px solid var(--color-text-stroke-2);
+      color: var(--color-text-stroke);
+}
+.AddPlayList-Popup {
+      background-color: var(--background-color-modal) !important;
+}

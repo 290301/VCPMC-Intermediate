@@ -15,6 +15,8 @@ import { InfoUser } from '../pages/private/InfoUser/InfoUser';
 
 // private page => Playlist
 import PlayList from '../pages/private/Playlist/List/PlayList';
+import AddPlayList from '../pages/private/Playlist/AddPlaylist/AddPlaylist';
+import { AddRecordToPlaylist } from './../pages/private/Playlist/AddRecordToPlaylist/AddRecordToPlaylist';
 
 // private page => Lên lịch phát
 import PlayScheduling from '../pages/private/PlayScheduling/PlayScheduling';
@@ -61,6 +63,20 @@ const privateRoutes: RouteProps[] = [
             component: PlayList,
             translate: translate.playList,
             pageHeader: routesConfig.playList,
+      },
+      // Thêm Playlist
+      {
+            path: routesConfig.addPlayList,
+            component: AddPlayList,
+            translate: translate.addPlayList,
+            pageHeader: routesConfig.addPlayList,
+      },
+      // Thêm bản ghi vào  Playlist
+      {
+            path: routesConfig.addRecordToPlaylist,
+            component: AddRecordToPlaylist,
+            translate: translate.addRecordToPlaylist,
+            pageHeader: routesConfig.addRecordToPlaylist,
       },
 
       // Lên lịch phát

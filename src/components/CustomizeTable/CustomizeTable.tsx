@@ -17,9 +17,10 @@ type CustomizeTableProps = {
       dataSource: any;
       pageSize: number;
       rowSelection?: RowSelection;
+      minHeight?: string;
 };
 
-export const CustomizeTable = ({ columns, dataSource, pageSize, rowSelection }: CustomizeTableProps) => {
+export const CustomizeTable = ({ columns, dataSource, pageSize, rowSelection, minHeight }: CustomizeTableProps) => {
       const [currentPage, setCurrentPage] = useState<number>(1);
       const getData = (current: number, pageSize: number) => {
             return dataSource.slice((current - 1) * pageSize, current * pageSize);
@@ -33,11 +34,12 @@ export const CustomizeTable = ({ columns, dataSource, pageSize, rowSelection }: 
       return (
             <div className="customize-table-wrapper">
                   <Table
+                        style={{ minHeight: minHeight }}
                         rowSelection={rowSelection?.isShowRowSelection ? rowSelectionOption : undefined}
                         columns={columns}
                         dataSource={getData(currentPage, pageSize)}
                         pagination={false}
-                        loading={dataSource.length ? false : true}
+                        loading={dataSource.length > 0 ? false : true}
                   />
                   <div
                         style={{

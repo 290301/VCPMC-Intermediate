@@ -1,5 +1,8 @@
 import * as duration from 'dayjs/plugin/duration';
 import dayjs from 'dayjs';
+import { useDispatch } from 'react-redux';
+import { toggleSidebar } from '../redux/Slice/Sidebar';
+
 export const formatDuration = (seconds: number): string => {
       dayjs.extend(duration);
       const dayJSduration = dayjs.duration(seconds, 'second');

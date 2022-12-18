@@ -9,9 +9,10 @@ export const routesConfig = {
       // Kho bản ghi
       recordStore: '/recordStore',
       updateRecord: '/recordStore/updateRecord/:id',
-
       // Playlist
       playList: '/playList',
+      addPlayList: '/playList/addPlayList',
+      addRecordToPlaylist: '/playList/addRecordToPlaylist',
 
       // Lập lịch phát
       playScheduling: '/playScheduling',

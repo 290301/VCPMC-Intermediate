@@ -7,6 +7,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Cindy Cường',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '2',
@@ -16,6 +17,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Grady Phùng',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '3',
@@ -25,6 +27,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Viola Khang',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '4',
@@ -34,6 +37,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Rene Hiền',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '5',
@@ -43,6 +47,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Yvette Đỗ',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '6',
@@ -52,6 +57,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Cedric Hoàng',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '7',
@@ -61,6 +67,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Noel Dung',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '8',
@@ -70,6 +77,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Adrienne Nhung',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '9',
@@ -79,6 +87,7 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Adrienne Lư',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
       {
             key: '10',
@@ -88,5 +97,6 @@ export const playListAPI: any[] = [
             titles: ['Pop', 'Chill', 'Trending', 'Songs'],
             createAt: 1875938900000,
             creator: 'Adrienne Lư',
+            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
 ];

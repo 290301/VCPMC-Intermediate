@@ -8,6 +8,10 @@
       border-radius: 8px;
       padding: 12px 30px;
       cursor: pointer;
+      transition: 0.2s ease;
+}
+.btn:active {
+      transform: scale(0.9);
 }
 
 .btn-primary {

@@ -7,9 +7,13 @@
 }
 .modalSidebar.close {
       background-color: unset;
+      width: var(--width-sidebar-close);
+
       & .wrapper_Sidebar {
-            width: 30px;
+            width: var(--width-sidebar-close);
+
             position: relative;
+            transition: 0.4s ease;
       }
       & .LogoApp {
             display: none;
@@ -36,7 +40,7 @@
       opacity: 1;
 }
 .wrapper_Sidebar {
-      width: var(--width-sidebar);
+      width: var(--width-sidebar-open);
       text-align: center;
       padding-top: 20px;
       transition: 0.4s ease;

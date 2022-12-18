@@ -6,4 +6,5 @@ export type PlayListType = {
       titles: string[];
       createAt: number;
       creator: string;
+      img: string;
 };
