@@ -10,7 +10,7 @@ type SelectProps = {
       borderWhite?: boolean;
 };
 
-const CustomizeSelect = ({ style, options, defaultValue = 'all', borderWhite, onChange }: SelectProps) => {
+const CustomizeSelect = ({ style, options, defaultValue, borderWhite, onChange }: SelectProps) => {
       return (
             <Select
                   popupClassName="selectPopup"
