@@ -34,7 +34,7 @@ const ForgetPassword = () => {
       };
       return (
             <div className={cx('wrapperForgetPassword')}>
-                  <LogoApp />
+                  <LogoApp width="200px" height="200px" />
                   <div style={statusSend === 'default' ? { display: 'block' } : { display: 'none' }}>
                         <h2 className={cx('title')}>Khôi phục mật khẩu</h2>
                         <p className={cx('text')}>

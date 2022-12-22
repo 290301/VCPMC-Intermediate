@@ -9,5 +9,6 @@ export type UserType = {
       dateOfBirth: number;
       email: string;
       image: string;
-      
+      isActive: boolean;
+      expirationDate: number;
 };

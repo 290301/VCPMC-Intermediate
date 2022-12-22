@@ -26,6 +26,7 @@ const AddPlayList = () => {
       const dispatch = useDispatch<any>();
       const columns = [
             {
+                  width: '6%',
                   title: 'STT',
                   dataIndex: 'STT',
                   render: (id: any, record: any, index: number) => {
@@ -118,7 +119,13 @@ const AddPlayList = () => {
                   },
             },
       ];
+      useEffect(() => {
+            const timeout = setTimeout(() => {
+                  youtubeBox.url.length === 0 && setYoutubeBox({ url: '', mount: false });
+            }, 1000);
 
+            return () => clearTimeout(timeout);
+      }, [youtubeBox.url]);
       useEffect(() => {
             dispatch(toggleSidebar({ type: 'fixed', isOpen: false }));
       }, []);
@@ -138,7 +145,7 @@ const AddPlayList = () => {
                                     <div className={cx('line')}></div>
                                     <div className={cx('row', 'block')}>
                                           <label className={cx('title')}>
-                                                Tiêu đề: <span style={{ color: 'red' }}>*</span>{' '}
+                                                Tiêu đề: <span style={{ color: 'red' }}>* </span>{' '}
                                           </label>
                                           <input className={cx('input')} type="text" />
                                     </div>
@@ -253,7 +260,7 @@ const AddPlayList = () => {
                         <div></div>
                         <div>
                               {' '}
-                              <span style={{ color: 'red' }}>*</span>
+                              <span style={{ color: 'red' }}>* </span>
                               <span style={{ color: 'var(--color-text-stroke-2)', fontSize: '12px' }}>
                                     Là những trường thông tin bắt buộc
                               </span>

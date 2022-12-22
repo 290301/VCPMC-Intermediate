@@ -1,4 +1,4 @@
-export type PlayListType = {
+export interface PlayListType {
       key: string;
       name: string;
       quantityRecord: number;
@@ -7,4 +7,4 @@ export type PlayListType = {
       createAt: number;
       creator: string;
       img: string;
-};
+}

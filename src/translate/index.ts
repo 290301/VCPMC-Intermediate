@@ -32,6 +32,8 @@ export const translate = {
 
       // Cài đặt
       settings: 'Cài đặt',
+      authorization: 'Phân quyền người dùng',
+      addUser: 'Thêm người dùng',
 
       // Hỗ trợ
       support: ' Hỗ trợ',

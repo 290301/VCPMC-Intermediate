@@ -1,0 +1,45 @@
+.wrapper {
+      width: 800px;
+}
+.form-control {
+      margin-top: 20px;
+}
+.form-group {
+      display: flex;
+      gap: 20px;
+}
+.form-item {
+      width: 100%;
+      margin-bottom: 26px;
+}
+.label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      display: inline-block;
+      margin-bottom: 10px;
+}
+.input {
+      width: 100%;
+      font-size: 14px;
+      font-weight: 400;
+      background-color: var(--background-color-input);
+      border-radius: 8px;
+      color: #fff;
+      border: none;
+      outline: none;
+      padding: 14px 12px ;
+}
+
+.buttons {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-evenly;
+}
+.select {
+      & div {
+            width: 100%;
+            height: 44.8px;
+      }
+}

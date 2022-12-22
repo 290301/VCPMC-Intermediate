@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { UserType } from './../../types/User';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { collection, query, where, getDocs, doc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase';
-import { UserType } from '../../types/Account';
 
 type UserSliceProps = {
       data: UserType[];
@@ -10,14 +10,14 @@ type UserSliceProps = {
       statusRequest: 'pending' | 'fulfilled' | 'reject' | 'default';
 };
 
-const collectionRef = collection(db, 'accounts');
+const collectionRef = collection(db, 'users');
 
 export const Login = createAsyncThunk(
       'user/login',
       async ({ userName, password }: { userName: string; password: string }) => {
             try {
                   const q = query(
-                        collection(db, 'accounts'),
+                        collection(db, 'users'),
                         where('userName', '==', userName),
                         where('password', '==', password),
                   );
@@ -37,8 +37,8 @@ export const Logout = createAsyncThunk('user/logout', async () => {
 
 export const UpdateUser = createAsyncThunk('user/update', async (data: UserType) => {
       try {
-            const AccountRef = doc(collectionRef, data.id);
-            updateDoc(AccountRef, data);
+            const UserRef = doc(collectionRef, data.id);
+            updateDoc(UserRef, data);
             return data;
       } catch (error) {
             console.log(error);
@@ -49,8 +49,8 @@ export const UpdatePassword = createAsyncThunk(
       'user/updatePassword',
       async ({ idUser, newPassword }: { idUser: string; newPassword: string }) => {
             try {
-                  const AccountRef = doc(collectionRef, idUser);
-                  updateDoc(AccountRef, {
+                  const UserRef = doc(collectionRef, idUser);
+                  updateDoc(UserRef, {
                         password: newPassword,
                   });
             } catch (error) {
@@ -58,6 +58,21 @@ export const UpdatePassword = createAsyncThunk(
             }
       },
 );
+
+export const getDataUsers = createAsyncThunk('user/getUsers', async () => {
+      try {
+            const data: UserType[] = [];
+            const queryData = query(collectionRef);
+            const documentSnapshot = await getDocs(queryData);
+            documentSnapshot.forEach((doc) => {
+                  const obj: UserType = { ...(doc.data() as UserType), id: doc.id };
+                  data.push(obj);
+            });
+            return data;
+      } catch (error) {
+            console.log(error);
+      }
+});
 
 export const UserSlice = createSlice({
       name: ' user',
@@ -103,6 +118,14 @@ export const UserSlice = createSlice({
             builder.addCase(UpdatePassword.fulfilled, (state, action) => {
                   state.currentUser = { ...state.currentUser, password: action.meta.arg.newPassword };
                   state.statusRequest = 'fulfilled';
+            });
+            // ----------------------Get data users
+            builder.addCase(getDataUsers.fulfilled, (state, action) => {
+                  if (action.payload !== undefined) {
+                        state.data = action.payload;
+                  } else {
+                        console.log('Error');
+                  }
             });
       },
 });

@@ -31,6 +31,8 @@ export const routesConfig = {
 
       // Cài đặt
       settings: '/settings',
+      authorization: '/settings/authorization',
+      addUser: '/settings/addUser',
 
       // Hỗ trợ
       support: '/support',

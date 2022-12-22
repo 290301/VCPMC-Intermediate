@@ -113,7 +113,7 @@ const SidebarContent = ({
                   subMenu: [
                         {
                               title: 'Phân quyền người dùng',
-                              navigateTo: routesConfig.settings,
+                              navigateTo: routesConfig.authorization,
                         },
                         {
                               title: 'Cấu hình',

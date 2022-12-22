@@ -21,7 +21,7 @@ const ResetPassword = () => {
       };
       return (
             <div className={cx('wrapperResetPassword')}>
-                  <LogoApp />
+                  <LogoApp width="200px" height="200px" />
                   <h2 className={cx('title')}>Đặt lại mật khẩu</h2>
                   <form>
                         <label htmlFor="password" className={cx('label')}>

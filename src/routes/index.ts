@@ -32,6 +32,9 @@ import History from '../pages/private/Revenue/History/History';
 import RevenueDistribution from '../pages/private/Revenue/RevenueDistribution/RevenueDistribution';
 
 import { routesConfig } from './routeConfig';
+import Settings from '../pages/private/Settings';
+import Authorization from '../pages/private/Settings/Authorization/Authorization';
+import AddUser from '../pages/private/Settings/Authorization/AddUser/AddUser';
 
 export type RouteProps = {
       path: string;
@@ -150,9 +153,23 @@ const privateRoutes: RouteProps[] = [
       // Cài đặt
       {
             path: routesConfig.settings,
-            component: ListRecordStore,
-            translate: 'Cài đặt',
+            component: Settings,
+            translate: translate.settings,
             pageHeader: routesConfig.settings,
+      },
+      // Cài đặt => Phân quyền người dùng
+      {
+            path: routesConfig.authorization,
+            component: Authorization,
+            translate: translate.authorization,
+            pageHeader: routesConfig.authorization,
+      },
+      // Cài đặt => Phân quyền người dùng => Thêm người dùng
+      {
+            path: routesConfig.addUser,
+            component: AddUser,
+            translate: translate.addUser,
+            pageHeader: routesConfig.addUser,
       },
 
       // Hỗ trợ

@@ -96,16 +96,4 @@ export const recordStoreAPI: any[] = [
             linkYoutube: 'http://www.youtube.com/watch?v=knW7-x7Y7RE',
             img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
       },
-      {
-            name: 'Sleek Granite Ball ',
-            id_ISRC: 'KRA4010503',
-            duration: 264,
-            singer: 'Min',
-            author: 'Min',
-            type: 'Ballad',
-            format: 'Audio',
-            timeValid: 886405699000,
-            linkYoutube: 'http://www.youtube.com/watch?v=knW7-x7Y7RE',
-            img: 'https://source.unsplash.com/random/500x500?sig=1004567010',
-      },
 ];

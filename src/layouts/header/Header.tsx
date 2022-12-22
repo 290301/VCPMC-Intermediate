@@ -51,6 +51,14 @@ export const Header = () => {
             };
             // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [pathName]);
+
+      const handleDisable = (event: any, index: number) => {
+            if (index === 0 || index === currentPages.length - 1) {
+                  // Đang đứng ở trang nào thì disable thẻ link pageHeader trang đó để tránh click và re-render
+                  event.preventDefault();
+                  event.stopPropagation();
+            }
+      };
       return (
             <>
                   {/* Change Languages and Info user */}
@@ -75,7 +83,12 @@ export const Header = () => {
                   <div className={cx('secondRow', 'heading', currentPages.length > 1 ? 'show' : 'hide')}>
                         {currentPages.map((page, index) => {
                               return (
-                                    <Link className={cx('link', pathName === page && 'active')} key={index} to={page}>
+                                    <Link
+                                          onClick={(event) => handleDisable(event, index)}
+                                          className={cx('link', pathName === page && 'active')}
+                                          key={index}
+                                          to={page}
+                                    >
                                           {privateRoutes.map((route) => {
                                                 if (route.pageHeader === page?.replace(`/${id}`, ''))
                                                       return (

@@ -294,6 +294,7 @@ export const AddRecordToPlaylist = () => {
                                     </div>
                               </div>
                               <CustomizeTable
+                                    minHeight="381px"
                                     dataSource={dataSourceLeft || []}
                                     columns={columnsTableLeft}
                                     pageSize={6}
@@ -317,7 +318,7 @@ export const AddRecordToPlaylist = () => {
                                                                   dataSourceRight?.reduce(
                                                                         (prev, current) => prev + current.duration,
                                                                         0,
-                                                                  ) as number,
+                                                                  ) as unknown as number,
                                                             )
                                                       ) : (
                                                             <>--:--:--:</>
@@ -332,6 +333,7 @@ export const AddRecordToPlaylist = () => {
                               </div>
                               {dataSourceRight?.length! > 0 ? (
                                     <CustomizeTable
+                                          minHeight="381px"
                                           columns={columnsTableRight}
                                           dataSource={dataSourceRight || []}
                                           pageSize={6}

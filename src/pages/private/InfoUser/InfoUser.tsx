@@ -1,14 +1,14 @@
 import { DatePicker, Image, Modal } from 'antd';
 import './InfoUser.css';
 import classNames from 'classnames/bind';
+import style from './InfoUser.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { HeaderContent } from '../../../components/HeaderContent/HeaderContent';
 import { RootState } from '../../../redux/store';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import style from './InfoUser.module.scss';
-import { UserType } from '../../../types/Account';
+import { UserType } from '../../../types/User';
 import dayjs from 'dayjs';
 import CustomizeButton from '../../../components/CustomizeButton/CustomizeButton';
 import { useEffect, useState } from 'react';
@@ -22,6 +22,7 @@ import { toast } from 'react-toastify';
 import ErrorMessage from '../../../components/ErrorMessageForm/ErrorMessageForm';
 
 import { LogoClockCircle } from '../../../assets/svg/LogoClock';
+import { toggleSidebar } from '../../../redux/Slice/Sidebar';
 const cx = classNames.bind(style);
 export const InfoUser = () => {
       const dispatch = useDispatch<any>();
@@ -39,6 +40,8 @@ export const InfoUser = () => {
             roleID: yup.string().trim().notRequired(),
             userName: yup.string().trim().notRequired(),
             password: yup.string().trim().notRequired(),
+            expirationDate: yup.number().notRequired(),
+            isActive: yup.boolean().notRequired(),
             email: yup.string().notRequired(),
             image: yup.string().notRequired(),
             firstName: yup.string().required('Vui lòng điền vào trường này'),
@@ -92,7 +95,9 @@ export const InfoUser = () => {
                   },
             },
       ];
-
+      useEffect(() => {
+            dispatch(toggleSidebar({ type: 'block', isOpen: false }));
+      }, []);
       return (
             <>
                   <HeaderContent title="Thông tin cơ bản" />

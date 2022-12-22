@@ -40,10 +40,15 @@ function App() {
                               </React.Suspense>
                         ) : (
                               <div className="wrapper wrapper-public">
-                                    <div style={{ width: '100%', position: 'relative' }}>
-                                          <OptionLanguages
-                                                style={{ position: 'absolute', right: '30px', top: '12px' }}
-                                          />
+                                    <div
+                                          style={{
+                                                width: '100%',
+                                                display: 'flex',
+                                                justifyContent: 'flex-end',
+                                                padding: '10px 30px 0px 0px',
+                                          }}
+                                    >
+                                          <OptionLanguages />
                                     </div>
                                     <Routes>
                                           {publicRoutes.map((route, index) => {

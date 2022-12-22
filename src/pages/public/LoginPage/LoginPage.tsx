@@ -48,7 +48,7 @@ const LoginPage = () => {
       };
       return (
             <div className={cx('wrapperLogin')}>
-                  <LogoApp />
+                  <LogoApp width="200px" height="200px" />
                   <h2 className={cx('title')}>Đăng nhập</h2>
                   <form>
                         <label htmlFor="username" className={cx('label')}>

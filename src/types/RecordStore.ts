@@ -1,4 +1,4 @@
-export type RecordType = {
+export interface RecordType {
       // Trong antd table, dataSource phải có trường key nếu không sẽ báo lỗi sài material UI...vv thì không biết
       key: string;
       name: string;
@@ -11,4 +11,4 @@ export type RecordType = {
       timeValid: number;
       img: string;
       linkYoutube: string;
-};
+}
