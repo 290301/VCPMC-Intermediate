@@ -206,7 +206,7 @@ const AddUser = () => {
                               <div className={cx('buttons')}>
                                     <CustomizeButton
                                           title="Hủy"
-                                          type="submit"
+                                          type="button"
                                           typeUI="outline"
                                           onClick={() => navigate(-1)}
                                     />
